@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState,useContext } from "react";
 import { useSession } from "next-auth/react";
 import { SearchContext } from '@/context/SearchContext';
+import { signOut } from "next-auth/react";
 function Navbar(){
     let {status}=useSession()
     let [searchInput,setSearchInput]=useState('');
@@ -31,6 +32,7 @@ function Navbar(){
                     <Link href={'user'}>User</Link>
                     {status==='unauthenticated' && <Link href={'signin'}>Sign In</Link>}
                     {status==='unauthenticated' && <Link href={'signup'}>Sign Up</Link>}
+                    {status==='authenticated' && <span onClick={()=> signOut()}>Sign Out</span>}
                     <Link href={'cart'}><Box pos={'relative'}><Icon fontSize="2xl"><HiShoppingCart/></Icon> <span className="cartIconLength">{cart.length>0&& cart.length}</span></Box></Link>
                     
                 </Flex>

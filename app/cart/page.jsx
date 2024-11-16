@@ -40,10 +40,12 @@ function Cart(){
                <Box my={8}>
               {userDetails.name && <Text>Delivering to {userDetails.name}</Text>}
               {userDetails.address && <Text>At {userDetails.address}</Text>}
-              {(cart.length>0 && status==='authenticated') && <Text>Scroll Below to see the checkout button if you do not see it</Text>}
+              {/* {(cart.length>0 && status==='authenticated') && <Text>Scroll Below to see the checkout button if you do not see it</Text>} */}
+            {(cart.length>0 && status==='authenticated') && <CheckoutButton cart={cart}/>}
+              
               </Box> 
-            {status==="unauthenticated" && <Heading>You need to sign in</Heading>}
-
+            {status==="unauthenticated" && <Heading mb={8}>You need to sign in</Heading>}
+            {status==='authenticated' && <Heading my={8}>Your Items</Heading>}
             <Flex mx={'auto'} justifyContent={'center'} gap={'20px'} wrap={'wrap'} >
 {cart.length>0 ? cart.map((item,index) => <GreenCard
         key={index}
@@ -55,7 +57,6 @@ function Cart(){
 
             </Flex>
 
-            {(cart.length>0 && status==='authenticated') && <CheckoutButton cart={cart}/>}
             </Box>
         
 </Container>
