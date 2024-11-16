@@ -1,5 +1,5 @@
 let market = [
-    { name: 'Mint', category: 'herbs', price: 5, description: 'A refreshing herb commonly used in teas and garnishes.' },
+    { name: 'Mint', category: 'herbs', price: 1, description: 'A refreshing herb commonly used in teas and garnishes.' },
     { name: 'Basil', category: 'herbs', price: 4, description: 'A popular herb with a sweet and savory aroma, great for Italian dishes.' },
     { name: 'Rosemary', category: 'herbs', price: 8, description: 'A fragrant herb with needle-like leaves, often used in roasted dishes.' },
     { name: 'Thyme', category: 'herbs', price: 4, description: 'A versatile herb with earthy flavors, perfect for soups and stews.' },

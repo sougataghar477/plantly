@@ -38,6 +38,7 @@ export default function SignIn() {
   onChange={(e) => setEmail(e.target.value)}
   required
   mb={8}
+  placeholder="Enter Email"
 />
 
 
@@ -47,6 +48,7 @@ export default function SignIn() {
   onChange={(e) => setPassword(e.target.value)}
   required
   mb={8}
+  placeholder="Enter Password"
 />
 
 <Button type="submit">Sign In</Button>
