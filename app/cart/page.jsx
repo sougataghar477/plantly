@@ -37,8 +37,9 @@ function Cart(){
          
             <Box w={'100%'} mx={'auto'}>
               <Heading mb={8} fontSize={'4xl'}>Cart</Heading>
-               <Flex mb={8} gap={'20px'} wrap={'wrap'}>
-               <Box w={300}  ><Heading mb={8}>User Details</Heading>
+               <Flex mb={8} gap={'20px'} alignItems={'flex-start'} wrap={'wrap'}>
+               <Box bg={'#1B1B1B'}  w={300} p={4} borderRadius={'2xl'}>
+                <Heading mb={8}>User Details</Heading>
               {userDetails.name && <Text>Delivering to {userDetails.name}</Text>}
               {userDetails.address && <Text>At {userDetails.address}</Text>}
               {/* {(cart.length>0 && status==='authenticated') && <Text>Scroll Below to see the checkout button if you do not see it</Text>} */}
