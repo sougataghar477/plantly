@@ -37,16 +37,16 @@ function Cart(){
          
             <Box w={'100%'} mx={'auto'}>
               <Heading mb={8} fontSize={'4xl'}>Cart</Heading>
-               <Box my={8}>
+               <Flex mb={8} gap={'40px'} wrap={'wrap'}>
+               <Box maxW={320}  ><Heading mb={8}>User Details</Heading>
               {userDetails.name && <Text>Delivering to {userDetails.name}</Text>}
               {userDetails.address && <Text>At {userDetails.address}</Text>}
               {/* {(cart.length>0 && status==='authenticated') && <Text>Scroll Below to see the checkout button if you do not see it</Text>} */}
-            {(cart.length>0 && status==='authenticated') && <CheckoutButton cart={cart}/>}
-              
-              </Box> 
-            {status==="unauthenticated" && <Heading mb={8}>You need to sign in</Heading>}
-            {status==='authenticated' && <Heading my={8}>Your Items</Heading>}
-            <Flex mx={'auto'} justifyContent={'center'} gap={'20px'} wrap={'wrap'} >
+            {(cart.length>0 && status==='authenticated') && <CheckoutButton cart={cart}/>}</Box> 
+              <Box maxW={720} mx={'auto'}>
+              {status==="unauthenticated" && <Heading mb={8}>You need to sign in</Heading>}
+            {status==='authenticated' && <Heading mb={8}>Your Items</Heading>}
+            <Flex  justifyContent={'center'} gap={'20px'} wrap={'wrap'} >
 {cart.length>0 ? cart.map((item,index) => <GreenCard
         key={index}
         name={item.name}
@@ -56,6 +56,9 @@ function Cart(){
       />):<Heading>No Items in Cart</Heading>}
 
             </Flex>
+              </Box>
+              </Flex> 
+
 
             </Box>
         
