@@ -1,3 +1,4 @@
+'use client';
 function _optionalChain(ops) {
   let lastAccessLHS = undefined
   let value = ops[0]
@@ -19,7 +20,7 @@ function _optionalChain(ops) {
   }
   return value
 }
-;('use client')
+
 
 import {
   Toaster as ChakraToaster,

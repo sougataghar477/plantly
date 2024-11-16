@@ -43,7 +43,7 @@ export default function CheckoutButton({ cart }) {
   };
 
   return (
-    <Button onClick={handleCheckout} disabled={isLoading}>
+    <Button my={8} onClick={handleCheckout} disabled={isLoading}>
       {isLoading ? 'Processing...' : 'Checkout'}
     </Button>
   );

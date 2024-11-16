@@ -37,11 +37,11 @@ function Cart(){
          
             <Box w={'100%'} mx={'auto'}>
               <Heading mb={8} fontSize={'4xl'}>Cart</Heading>
-              {userDetails && <Box my={8}>
-              <Text>Delivering to {userDetails.name}</Text>
-              <Text>At {userDetails.address}</Text>
-              <Text>Scroll Below to see the checkout button if you do not see it</Text>
-              </Box>}
+               <Box my={8}>
+              {userDetails.name && <Text>Delivering to {userDetails.name}</Text>}
+              {userDetails.address && <Text>At {userDetails.address}</Text>}
+              {(cart.length>0 && status==='authenticated') && <Text>Scroll Below to see the checkout button if you do not see it</Text>}
+              </Box> 
             {status==="unauthenticated" && <Heading>You need to sign in</Heading>}
 
             <Flex mx={'auto'} justifyContent={'center'} gap={'20px'} wrap={'wrap'} >
