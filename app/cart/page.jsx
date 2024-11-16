@@ -1,0 +1,63 @@
+'use client';
+import { useContext,useEffect,useState } from "react";
+import { Box,Container,Flex,Heading,Text } from "@chakra-ui/react";
+import { SearchContext } from "@/context/SearchContext";
+import GreenCard from "@/components/Card";
+import CheckoutButton from "@/components/CheckoutButton";
+import { useSession } from "next-auth/react";
+function Cart(){
+  const { cart,deleteFromCart } = useContext(SearchContext);
+  const {data,status} =useSession();
+  const [userDetails,setDetails]=useState({});
+  useEffect(() => {
+    if (status === 'authenticated' && data?.user?.email) {
+      console.log(data.user.email);
+
+      async function grabDetails() {
+        try {
+          const response = await fetch('/api/user_details', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email: data.user.email }),
+          });
+          const responseBody = await response.json();
+          console.log('Response from server:', responseBody);
+          setDetails(responseBody)
+        } catch (error) {
+          console.error('Error fetching details:', error);
+        }
+      }
+
+      grabDetails();
+    }
+  }, [data, status]);
+    return <Container px={4} py={16} maxW={990}>
+         
+            <Box w={'100%'} mx={'auto'}>
+              <Heading mb={8} fontSize={'4xl'}>Cart</Heading>
+              {userDetails && <Box my={8}>
+              <Text>Delivering to {userDetails.name}</Text>
+              <Text>At {userDetails.address}</Text>
+              <Text>Scroll Below to see the checkout button if you do not see it</Text>
+              </Box>}
+            {status==="unauthenticated" && <Heading>You need to sign in</Heading>}
+
+            <Flex mx={'auto'} justifyContent={'center'} gap={'20px'} wrap={'wrap'} >
+{cart.length>0 ? cart.map((item,index) => <GreenCard
+        key={index}
+        name={item.name}
+        description={item.description}
+        price={item.price}
+        id={item.id}
+      />):<Heading>No Items in Cart</Heading>}
+
+            </Flex>
+
+            {(cart.length>0 && status==='authenticated') && <CheckoutButton cart={cart}/>}
+            </Box>
+        
+</Container>
+}
+export default Cart;

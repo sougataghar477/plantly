@@ -1,21 +1,14 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
+ .cartIconLength{
+    position: absolute;
+    top: -7px;
+    right: -4px;
+    background-color: white;
+    color: black;
+    border-radius: 50%;
+    
+    width: 16px;
+    height: 16px;
+    font-size: 12px;
+    display: block;
+    text-align: center;
+ }
