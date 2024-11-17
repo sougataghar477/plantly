@@ -1,27 +1,6 @@
-// 'use client';
-// // context/SearchContext.js
-// import { createContext, useState } from 'react';
-
-// // Create the context
-// export const SearchContext = createContext();
-
-// // Create the provider
-// export const SearchProvider = ({ children }) => {
- 
-//   const [query,setQuery]=useState('');
-//   const updateQuery=(q) => setQuery(q);
-//   // Function to update the search results
-//    const [cart,setCart]=useState([]);
-//    const addToCart=(item)=>{setCart(prev => [...prev,item])};
-//   return (
-//     <SearchContext.Provider value={{query,updateQuery,cart,addToCart }}>
-//       {children}
-//     </SearchContext.Provider>
-//   );
-// };
 'use client';
 // context/SearchContext.js
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect,useCallback  } from 'react';
 
 // Create the context
 export const SearchContext = createContext();
@@ -49,6 +28,12 @@ export const SearchProvider = ({ children }) => {
       return updatedCart;
     });
   };
+ 
+  const emptyCart = useCallback(() => {
+    setCart([]);
+    localStorage.setItem('cart', JSON.stringify([]));
+     // Clear cart state
+  }, []);
   // Load cart from localStorage on component mount
   useEffect(() => {
     const storedCart = localStorage.getItem('cart');
@@ -58,7 +43,7 @@ export const SearchProvider = ({ children }) => {
   }, []);
 
   return (
-    <SearchContext.Provider value={{ query, updateQuery, cart, addToCart,deleteFromCart }}>
+    <SearchContext.Provider value={{ query, updateQuery, cart, addToCart,deleteFromCart,emptyCart }}>
       {children}
     </SearchContext.Provider>
   );

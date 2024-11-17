@@ -31,15 +31,13 @@ export default function CheckoutButton({ cart }) {
       // Redirect to Stripe Checkout
       const stripe = await stripePromise;
       const { error } = await stripe.redirectToCheckout({ sessionId: data.id });
-
+      setIsLoading(false);
       if (error) {
         console.error(error);
       }
     } catch (error) {
       console.error('Error during checkout:', error);
-    } finally {
-      setIsLoading(false);
-    }
+    } 
   };
 
   return (
