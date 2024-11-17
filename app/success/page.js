@@ -9,7 +9,7 @@ export default function Success() {
     return (
       <Container maxW={960} >
         <Grid h={'100vh'} placeItems={'center'}>
-          <Box textAlign={'center'}>   <Heading fontSize={'4xl'} textAlign={'center'}>
+          <Box bg={'#1B1B1B'} p={8} textAlign={'center'}>   <Heading fontSize={'4xl'} textAlign={'center'}>
          Payment Successful! 
         </Heading>
         <Heading my={4}>Thank you for your purchase.</Heading>
