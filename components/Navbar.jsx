@@ -33,7 +33,7 @@ function Navbar(){
                     {status==='unauthenticated' && <Link href={'signin'}>Sign In</Link>}
                     {status==='unauthenticated' && <Link href={'signup'}>Sign Up</Link>}
                     {status==='authenticated' && <span onClick={()=> signOut()}>Sign Out</span>}
-                    <Link href={'cart'}><Box pos={'relative'}><Icon fontSize="2xl"><HiShoppingCart/></Icon> <span className="cartIconLength">{cart.length>0&& cart.length}</span></Box></Link>
+                    <Link href={'cart'}><Box pos={'relative'}><Icon fontSize="2xl"><HiShoppingCart/></Icon> {cart.length>0 && <span className="cartIconLength">{cart.length}</span>}</Box></Link>
                     
                 </Flex>
             </Flex>
