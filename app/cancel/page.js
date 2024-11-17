@@ -5,8 +5,7 @@ export default function Cancel() {
       <Container maxW={960} >
         <Grid h={'100vh'} placeItems={'center'}>
          Something Went Wrong! 
-          <Box bg={'#1B1B1B'} p={8} textAlign={'center'}>
-            <Heading fontSize={'4xl'} textAlign={'center'}>
+          <Box  textAlign={'center'}>   <Heading fontSize={'4xl'} textAlign={'center'}>
          Something Went Wrong! 
         </Heading>
         <Heading my={4}>Please try again.</Heading>
