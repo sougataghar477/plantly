@@ -7,5 +7,5 @@ export async function POST(req) {
         { email }, // Query to find the document
         { $set: { address } }                 // Update operation
       );
-    return Response.json({message:'Hello'})
+    return Response.json({userUpdated:true})
   }

@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
-import { Container, Button, Grid, Input, Textarea, Box, Heading } from "@chakra-ui/react";
+import { Container, Button, Grid, Input, Textarea, Box, Heading, Toast } from "@chakra-ui/react";
 import { Field } from "@/components/ui/field";
-
+import { toaster ,Toaster} from "@/components/ui/toaster";
 function User() {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
@@ -25,9 +25,9 @@ function User() {
 
           if (response.ok) {
             const { name, address } = await response.json();
-            console.log("Fetched details:", { name, address });
-            setName(name || "");
-            setAddress(address || "");
+             
+            setName(name);
+            setAddress(address);
           } else {
             console.error("Failed to fetch user details:", response.statusText);
           }
@@ -57,9 +57,15 @@ function User() {
       console.log("Update response:", responseData);
 
       if (response.ok) {
-        alert("User details updated successfully!");
+        toaster.create({
+            description: "Address updated successfully",
+            type: "success",
+          })
       } else {
-        alert("Failed to update user details. Please try again.");
+        toaster.create({
+            description: "Failed to update User",
+            type: "error",
+          })
       }
     } catch (error) {
       console.error("Error updating user details:", error);
@@ -68,6 +74,7 @@ function User() {
 
   return (
     <Container maxW={960}>
+        <Toaster/>
       <Grid h={"100vh"} placeItems={"center"} maxW={360} mx={"auto"}>
         <Box w={"100%"}>
             <Heading fontSize={'2xl'} mb={8}>User Details</Heading>

@@ -28,7 +28,7 @@ function Home() {
         price={item.price}
       />
     ))}
-{market.filter(item => item.name.toLowerCase().includes(query.toLowerCase())).length===0 && <Heading>No Results Found</Heading>}
+{market.filter(item => item.name.toLowerCase().includes(query.toLowerCase())).length === 0 && <Heading>No Results Found</Heading>}
 
 
   </Flex>
