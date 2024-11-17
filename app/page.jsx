@@ -10,7 +10,7 @@ function Home() {
   console.log(searchResults)
   return <Container p={16} maxW={1260}>      
   <Box maxW={940} mx={'auto'}>
-    <Heading mb={8} fontSize={'4xl'}>Items</Heading>
+    <Heading mb={8} fontSize={'4xl'}>{query.length>0?'Searched Items':'Items'}</Heading>
   <Flex mx={'auto'} justifyContent={'center'} gap={'20px'} wrap={'wrap'} >
   {query.length>0?market.filter(item => item.name.toLowerCase().includes(query.toLowerCase())).map((shrub, index) => (
       <GreenCard
