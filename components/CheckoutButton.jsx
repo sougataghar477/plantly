@@ -27,11 +27,11 @@ export default function CheckoutButton({ cart }) {
       }
 
       const data = await response.json();
+      setIsLoading(false);
 
       // Redirect to Stripe Checkout
       const stripe = await stripePromise;
       const { error } = await stripe.redirectToCheckout({ sessionId: data.id });
-      setIsLoading(false);
       if (error) {
         console.error(error);
       }
