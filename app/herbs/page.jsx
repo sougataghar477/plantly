@@ -6,7 +6,7 @@ import { Box,Container,Flex,Text,Heading } from "@chakra-ui/react";
 import { SearchContext } from '@/context/SearchContext';
 function Herbs(){
   const { searchResults, updateSearchResults,query,addToCart } = useContext(SearchContext);
-return <Container p={16} maxW={1260}>
+return <Container py={16} px={[4,16,16]} maxW={1260}>
          
             <Box maxW={940} mx={'auto'}>
               <Heading mb={8} fontSize={'4xl'}>{query.length>0?'Searched Items':'Herbs'}</Heading>
