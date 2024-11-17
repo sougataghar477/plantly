@@ -26,8 +26,8 @@ export async function POST(req) {
       payment_method_types: ['card'],
       line_items: lineItems,
       mode: 'payment',
-      success_url: `https://plantly-rho.vercel.app/success`,
-      cancel_url: `$https://plantly-rho.vercel.app/cancel`,
+      success_url: `${process.env.NEXT_PUBLIC_URL}/success`,
+      cancel_url: `${process.env.NEXT_PUBLIC_URL}/cancel`,
     });
 
     // Respond with the session ID
