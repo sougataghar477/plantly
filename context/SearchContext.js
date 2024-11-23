@@ -1,19 +1,18 @@
 'use client';
-// context/SearchContext.js
+ 
 import { createContext, useState, useEffect,useCallback  } from 'react';
-
+import { usePathname } from 'next/navigation';
 // Create the context
 export const SearchContext = createContext();
-
-// Create the provider
+ 
 export const SearchProvider = ({ children }) => {
   const [query, setQuery] = useState('');
   const updateQuery = (q) => setQuery(q);
-
-  // Initialize cart state with data from localStorage, if it exists
+  const path=usePathname();
+ console.log(path)
   const [cart, setCart] = useState([]);
 
-  // Function to add items to the cart and update localStorage
+  
   const addToCart = (item) => {
     setCart((prev) => {
       const updatedCart = [...prev, item];
@@ -32,16 +31,18 @@ export const SearchProvider = ({ children }) => {
   const emptyCart = useCallback(() => {
     setCart([]);
     localStorage.setItem('cart', JSON.stringify([]));
-     // Clear cart state
+     
   }, []);
-  // Load cart from localStorage on component mount
+   
   useEffect(() => {
     const storedCart = localStorage.getItem('cart');
     if (storedCart) {
       setCart(JSON.parse(storedCart));
     }
   }, []);
-
+  useEffect(() => {
+    updateQuery('')
+  }, [path]);
   return (
     <SearchContext.Provider value={{ query, updateQuery, cart, addToCart,deleteFromCart,emptyCart }}>
       {children}

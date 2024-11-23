@@ -27,14 +27,15 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SessionProviderComponent>
         <SearchProvider>
+        <SessionProviderComponent>
+        
        <Provider>
         <Navbar/>
         {children}
         </Provider>
-        </SearchProvider> 
         </SessionProviderComponent>
+        </SearchProvider> 
 
       </body>
     </html>
