@@ -9,7 +9,7 @@ export const SearchProvider = ({ children }) => {
   const [query, setQuery] = useState('');
   const updateQuery = (q) => setQuery(q);
   const path=usePathname();
- console.log(path)
+ 
   const [cart, setCart] = useState([]);
 
   

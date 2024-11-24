@@ -18,15 +18,17 @@ return <Container py={16} px={[4,16,16]} maxW={1260}>
         name={item.name}
         description={item.description}
         price={item.price}
+        imageUrl={item.imageUrl}
       />
     )): market
     .filter(item => item.category === 'trees')
-    .map((herb, index) => (
+    .map((item, index) => (
       <GreenCard
         key={index}
-        name={herb.name}
-        description={herb.description}
-        price={herb.price}
+        name={item.name}
+        description={item.description}
+        price={item.price}
+        imageUrl={item.imageUrl}
       />
     ))}
 {market.filter(item => item.name.toLowerCase().includes(query.toLowerCase())).length===0 && <Heading>No Results Found</Heading>}

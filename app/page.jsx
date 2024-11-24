@@ -18,6 +18,7 @@ function Home() {
         name={item.name}
         description={item.description}
         price={item.price}
+        imageUrl={item.imageUrl}
       />
     )): market
     .map((item, index) => (
@@ -26,6 +27,7 @@ function Home() {
         name={item.name}
         description={item.description}
         price={item.price}
+        imageUrl={item.imageUrl}
       />
     ))}
 {market.filter(item => item.name.toLowerCase().includes(query.toLowerCase())).length === 0 && <Heading>No Results Found</Heading>}

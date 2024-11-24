@@ -18,6 +18,7 @@ return <Container py={16} px={[4,16,16]} maxW={1260}>
         name={shrub.name}
         description={shrub.description}
         price={shrub.price}
+        imageUrl={shrub.imageUrl}
       />
     )): market
     .filter(item => item.category === 'shrubs')
@@ -27,6 +28,7 @@ return <Container py={16} px={[4,16,16]} maxW={1260}>
         name={shrub.name}
         description={shrub.description}
         price={shrub.price}
+        imageUrl={shrub.imageUrl}
       />
     ))}
 {market.filter(item => item.name.toLowerCase().includes(query.toLowerCase())).length===0 && <Heading>No Results Found</Heading>}
