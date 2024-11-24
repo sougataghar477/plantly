@@ -54,6 +54,7 @@ function Cart(){
         description={item.description}
         price={item.price}
         id={item.id}
+        imageUrl={item.imageUrl}
       />):<Heading>No Items in Cart</Heading>}
 
             </Flex>
