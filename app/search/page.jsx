@@ -1,3 +1,4 @@
+'use client';
 import { useSearchParams } from 'next/navigation';
 import { Box, Container, Flex, Heading } from "@chakra-ui/react";
 import market from '@/market';
