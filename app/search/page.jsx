@@ -1,4 +1,5 @@
 'use client';
+import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Box, Container, Flex, Heading } from "@chakra-ui/react";
 import market from '@/market';
@@ -9,6 +10,7 @@ function SearchedResults() {
     const query = searchParams.get('q')?.toLowerCase(); // Normalize the query for case-insensitive matching
 
     return (
+        <Suspense>
         <Container py={16} px={[4, 16, 16]} maxW={1260}>
             <Box maxW={940} mx={'auto'}>
                 <Heading mb={8} fontSize={'4xl'}>Searched Items</Heading>
@@ -27,6 +29,7 @@ function SearchedResults() {
                 </Flex>
             </Box>
         </Container>
+        </Suspense>
     );
 }
 
