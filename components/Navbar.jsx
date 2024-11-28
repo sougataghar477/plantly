@@ -20,7 +20,7 @@ function Navbar(){
         e.preventDefault();
         router.push(`/search?q=${encodeURIComponent(searchInput)}`);
       }
-        return <Suspense>
+        return <Suspense> 
         <Box bgColor={'green.900'}>
             <Container maxW={1400} >
             <Flex py={4} alignItems={'center'} justifyContent={'space-between'}>
