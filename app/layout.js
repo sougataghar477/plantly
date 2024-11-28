@@ -1,10 +1,11 @@
 import localFont from "next/font/local";
- import React from "react";
- import SessionProviderComponent from "@/components/SessionProvider";
- import { SearchProvider } from "@/context/SearchContext"; 
+import React from "react";
+import SessionProviderComponent from "@/components/SessionProvider";
+import { SearchProvider } from "@/context/SearchContext";
 import { Provider } from "@/components/ui/provider";
 import './globals.css';
 import Navbar from "@/components/Navbar";
+import { Suspense } from "react";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -20,23 +21,23 @@ export const metadata = {
   title: "Plantly",
   description: "An E-Commerce Website About Plants",
 };
- 
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning >
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SearchProvider>
-        <SessionProviderComponent>
-        
-       <Provider>
-        <Navbar/>
-        {children}
-        </Provider>
-        </SessionProviderComponent>
-        </SearchProvider> 
-
+        <Suspense>
+          <SearchProvider>
+            <SessionProviderComponent>
+              <Provider>
+                <Navbar />
+                {children}
+              </Provider>
+            </SessionProviderComponent>
+          </SearchProvider>
+        </Suspense>
       </body>
     </html>
   );
