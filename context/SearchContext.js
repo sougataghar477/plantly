@@ -1,14 +1,12 @@
 'use client';
  
 import { createContext, useState, useEffect,useCallback  } from 'react';
-import { usePathname } from 'next/navigation';
+ 
 // Create the context
 export const SearchContext = createContext();
  
 export const SearchProvider = ({ children }) => {
-  const [query, setQuery] = useState('');
-  const updateQuery = (q) => setQuery(q);
-  const path=usePathname();
+ 
  
   const [cart, setCart] = useState([]);
 
@@ -40,11 +38,9 @@ export const SearchProvider = ({ children }) => {
       setCart(JSON.parse(storedCart));
     }
   }, []);
-  useEffect(() => {
-    updateQuery('')
-  }, [path]);
+ 
   return (
-    <SearchContext.Provider value={{ query, updateQuery, cart, addToCart,deleteFromCart,emptyCart }}>
+    <SearchContext.Provider value={{ cart, addToCart,deleteFromCart,emptyCart }}>
       {children}
     </SearchContext.Provider>
   );
