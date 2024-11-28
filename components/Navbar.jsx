@@ -1,5 +1,5 @@
 'use client';
-import { Box,Container,Flex,Input,Icon } from "@chakra-ui/react";
+import { Box,Container,Flex,Input,Icon, Button } from "@chakra-ui/react";
 import { HiShoppingCart } from "react-icons/hi";
 import Link from "next/link";
 import { useState,useContext } from "react";
@@ -14,7 +14,6 @@ function Navbar(){
     const {cart } = useContext(SearchContext);
     const router=useRouter();
     const path=usePathname();
- 
       let handleSubmit=(e)=>{
         e.preventDefault();
         router.push(`/search?q=${encodeURIComponent(searchInput)}`);
@@ -22,17 +21,26 @@ function Navbar(){
         return <Box bgColor={'green.900'}>
             <Container maxW={1400} >
             <Flex py={4} alignItems={'center'} justifyContent={'space-between'}>
-                <Flex gapX={8}><Link href={'/'}>Plantly</Link>
-                <Link href={'/herbs'}>Herbs</Link>
-                <Link href={'/shrubs'}>Shrubs</Link>
-                <Link href={'/trees'}>Trees</Link></Flex>
+                <Flex gapX={8}>
+                <Link className={path === '/' ? 'active-link':''} href={'/'}>Plantly</Link>
+                <Link className={path === '/herbs' ? 'active-link':''} href={'/herbs'}>Herbs</Link>
+                <Link className={path === '/shrubs' ? 'active-link':''} href={'/shrubs'}>Shrubs</Link>
+                <Link className={path === '/trees' ? 'active-link':''} href={'/trees'}>Trees</Link></Flex>
 
                 <Box flexGrow={1} maxW={320} >
                     <form onSubmit={handleSubmit}>
-                    <Input value={searchInput} 
-                    onInput={e=> setSearchInput(e.target.value)} borderColor={'white'} placeholder="Search here"/></form></Box>
+                        <Flex>
+                            <Input value={searchInput} 
+                                onInput={e=> setSearchInput(e.target.value)} 
+                                borderRightRadius={0} 
+                                borderColor={'white'} 
+                                placeholder="Search here"/>
+                    <Button borderLeftRadius={0} type="Submit">Search</Button></Flex>
+                  
+                    </form>
+                    </Box>
                 <Flex gapX={8}>
-                    <Link href={'user'}>User Profile</Link>
+                    <Link className={path === '/user' ? 'active-link':''} href={'user'}>User Profile</Link>
                     {status==='unauthenticated' && <Link href={'signin'}>Sign In</Link>}
                     {status==='unauthenticated' && <Link href={'signup'}>Sign Up</Link>}
                     {status==='authenticated' && <span onClick={()=> signOut()}>Sign Out</span>}
