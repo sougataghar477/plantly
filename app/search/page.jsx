@@ -16,6 +16,8 @@ function SearchedResults() {
                 <Heading mb={8} fontSize={'4xl'}>Searched Items</Heading>
                 <Flex mx={'auto'} justifyContent={'center'} gap={'20px'} wrap={'wrap'}>
                     {market
+                        .filter((i) => i.name.toLowerCase().includes(query)).length>0
+                        ?market
                         .filter((i) => i.name.toLowerCase().includes(query))
                         .map((item, index) => (
                             <GreenCard
@@ -25,7 +27,7 @@ function SearchedResults() {
                                 price={item.price}
                                 imageUrl={item.imageUrl}
                             />
-                        ))}
+                        )):<Heading>No Results Found</Heading>}
                 </Flex>
             </Box>
         </Container>
