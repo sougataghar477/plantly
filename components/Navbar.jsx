@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { SearchContext } from '@/context/SearchContext';
 import { signOut } from "next-auth/react";
+import { Suspense } from "react";
 function Navbar(){
     let {status}=useSession()
     let [searchInput,setSearchInput]=useState('');
@@ -19,7 +20,8 @@ function Navbar(){
         e.preventDefault();
         router.push(`/search?q=${encodeURIComponent(searchInput)}`);
       }
-        return <Box bgColor={'green.900'}>
+        return <Suspense>
+        <Box bgColor={'green.900'}>
             <Container maxW={1400} >
             <Flex py={4} alignItems={'center'} justifyContent={'space-between'}>
                 <Flex gapX={8}><Link href={'/'}>Plantly</Link>
@@ -45,5 +47,6 @@ function Navbar(){
             </Flex>
         </Container>
         </Box>
+        </Suspense>
 }
 export default Navbar;
