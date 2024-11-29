@@ -5,6 +5,7 @@ import market from "@/market";
 
 async function Home() {
   let { items, error, loading } = await getItems();
+  console.log(items)
 
 
   return <Container py={16} px={[4, 16, 16]} maxW={1260}>

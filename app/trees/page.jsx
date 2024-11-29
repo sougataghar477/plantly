@@ -3,6 +3,7 @@ import GreenCard from "@/components/Card";
 import { Box, Container, Flex, Text, Heading } from "@chakra-ui/react";
 async function Trees() {
   let { items, error, loading } = await getItems('trees');
+  console.log(items)
 
 
   return <Container py={16} px={[4, 16, 16]} maxW={1260}>
