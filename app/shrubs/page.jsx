@@ -3,7 +3,6 @@ import GreenCard from "@/components/Card";
 import { Box, Container, Flex, Text, Heading } from "@chakra-ui/react";
 async function Shrubs() {
   let { items, error, loading } = await getItems('shrubs');
-  console.log(items)
 
   return <Container py={16} px={[4, 16, 16]} maxW={1260}>
 
