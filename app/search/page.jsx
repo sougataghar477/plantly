@@ -8,6 +8,7 @@ async function SearchedResults({ searchParams }) {
 
     let p = await searchParams;
     let query = p.q;
+    let searchedItems=items.filter(item => item.name.toLowerCase().includes(query.toLowerCase()));
     return (
 
         <Container py={16} px={[4, 16, 16]} maxW={1260}>
@@ -19,7 +20,7 @@ async function SearchedResults({ searchParams }) {
                     ) : error ? (
                         <p>{error}</p>
                     ) : (
-                        items.filter(item => item.name.toLowerCase().includes(query.toLowerCase())).map((item, index) => (
+                        searchedItems.length>0?searchedItems.map((item, index) => (
                             <GreenCard
                                 key={index}
                                 name={item.name}
@@ -27,7 +28,7 @@ async function SearchedResults({ searchParams }) {
                                 price={item.price}
                                 imageUrl={item.imageUrl}
                             />
-                        ))
+                        )):<Heading>No results found`</Heading>
                     )}
                 </Flex>
             </Box>
