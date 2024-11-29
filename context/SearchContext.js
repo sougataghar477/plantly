@@ -7,7 +7,7 @@ export const SearchContext = createContext();
  
 export const SearchProvider = ({ children }) => {
  
- 
+  const [items,setItems]=useState([]);
   const [cart, setCart] = useState([]);
 
   
@@ -38,9 +38,14 @@ export const SearchProvider = ({ children }) => {
       setCart(JSON.parse(storedCart));
     }
   }, []);
- 
+  useEffect(() => {
+    fetch('/api/get_items')
+      .then(response => response.json()) // Parse the JSON from the response
+      .then(data => setItems(data))   // Log the fetched data
+      .catch(error => console.error('Error fetching data:', error)); // Handle errors
+  }, []);
   return (
-    <SearchContext.Provider value={{ cart, addToCart,deleteFromCart,emptyCart }}>
+    <SearchContext.Provider value={{ cart,items, addToCart,deleteFromCart,emptyCart }}>
       {children}
     </SearchContext.Provider>
   );

@@ -1,25 +1,25 @@
-'use client';
-import { Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
+
 import { Box, Container, Flex, Heading } from "@chakra-ui/react";
-import market from '@/market';
+import { getItems } from '@/GetItems';
 import GreenCard from "@/components/Card";
 
-function SearchedResults() {
-    const searchParams = useSearchParams();
-    const query = searchParams.get('q')?.toLowerCase(); // Normalize the query for case-insensitive matching
+async function SearchedResults({ searchParams }) {
+    const { items, loading, error } = await getItems();
 
+    let p = await searchParams;
+    let query = p.q;
     return (
-        <Suspense>
+
         <Container py={16} px={[4, 16, 16]} maxW={1260}>
             <Box maxW={940} mx={'auto'}>
                 <Heading mb={8} fontSize={'4xl'}>Searched Items</Heading>
                 <Flex mx={'auto'} justifyContent={'center'} gap={'20px'} wrap={'wrap'}>
-                    {market
-                        .filter((i) => i.name.toLowerCase().includes(query)).length>0
-                        ?market
-                        .filter((i) => i.name.toLowerCase().includes(query))
-                        .map((item, index) => (
+                    {loading ? (
+                        <p>Loading...</p>
+                    ) : error ? (
+                        <p>{error}</p>
+                    ) : (
+                        items.filter(item => item.name.toLowerCase().includes(query.toLowerCase())).map((item, index) => (
                             <GreenCard
                                 key={index}
                                 name={item.name}
@@ -27,11 +27,12 @@ function SearchedResults() {
                                 price={item.price}
                                 imageUrl={item.imageUrl}
                             />
-                        )):<Heading>No Results Found</Heading>}
+                        ))
+                    )}
                 </Flex>
             </Box>
         </Container>
-        </Suspense>
+
     );
 }
 
