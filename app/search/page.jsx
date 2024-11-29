@@ -28,7 +28,7 @@ async function SearchedResults({ searchParams }) {
                                 price={item.price}
                                 imageUrl={item.imageUrl}
                             />
-                        )):<Heading>No results found`</Heading>
+                        )):<Heading>No results found</Heading>
                     )}
                 </Flex>
             </Box>
