@@ -94,7 +94,7 @@ function SearchedResults() {
         }
 
         fetchItems();
-    }, [query]); // Re-run when query changes
+    }, [query]); 
 
     return (
         <Container py={16} px={[4, 16, 16]} maxW={1260}>
