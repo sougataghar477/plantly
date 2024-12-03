@@ -4,7 +4,7 @@ import { getItems } from '@/GetItems';
 import GreenCard from "@/components/Card";
 
 async function SearchedResults({searchParams}) {
-    const {items,loading,error} =await getItems();
+    const {items,error} =await getItems();
   // Normalize the query for case-insensitive matching
     let query= searchParams.q;
     let searchedItems=items.filter(item => item.name.toLowerCase().includes(query.toLowerCase()));
@@ -14,9 +14,7 @@ async function SearchedResults({searchParams}) {
             <Box maxW={940} mx={'auto'}>
                 <Heading mb={8} fontSize={'4xl'}>Searched Items</Heading>
                 <Flex mx={'auto'} justifyContent={'center'} gap={'20px'} wrap={'wrap'}>
-                {loading ? (
-  <p>Loading...</p>
-) : error ? (
+                { error ? (
   <p>{error}</p>
 ) : (
     searchedItems.length>0?searchedItems.map((item, index) => (
