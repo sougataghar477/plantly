@@ -2,8 +2,8 @@ import { getItems } from "@/GetItems";
 import market from "@/market";
 import GreenCard from "@/components/Card";
 import { Box, Container, Flex, Text, Heading } from "@chakra-ui/react";
-function Shrubs() {
-  let {error,items}=getItems("shrubs")
+async function Shrubs() {
+  let {error,items}=await getItems("shrubs")
   return <Container py={16} px={[4, 16, 16]} maxW={1260}>
 
     <Box maxW={940} mx={'auto'}>
