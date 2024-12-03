@@ -11,7 +11,7 @@ function SearchedResults() {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const searchParams = useSearchParams();
-    const query = searchParams.get('q')?.toLowerCase() || "";
+    const query = searchParams.get('q') || "";
     useEffect(() => {
         async function fetchAndFilterItems() {
             setLoading(true);
@@ -22,12 +22,8 @@ function SearchedResults() {
                 if (error) {
                     setError(error); // Handle the error
                 } else {
-                     // Get query parameter
-                    const filteredItems = fetchedItems.filter(item =>
-                        item.name.toLowerCase().includes(query)
-                    );
-                    setItems(filteredItems); // Save filtered items
-                }
+                     
+                    setItems(fetchedItems.filter(item => item.name.toLowerCase().includes(query.toLowerCase()))); }
             } catch (err) {
                 setError("Failed to fetch items.");
             } finally {
