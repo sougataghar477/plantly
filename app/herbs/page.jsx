@@ -1,5 +1,3 @@
-
-import market from "@/market";
 import GreenCard from "@/components/Card";
 import { Box, Container, Flex, Text, Heading } from "@chakra-ui/react";
 import { getItems } from "@/GetItems";

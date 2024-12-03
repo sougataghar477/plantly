@@ -14,12 +14,15 @@ function Navbar() {
     let { status } = useSession()
     let [searchInput, setSearchInput] = useState('');
     const [open, setOpen] = useState(false)
+    const [loading,setLoading]=useState(false)
     const { cart } = useContext(SearchContext);
     const router = useRouter();
     const path = usePathname();
     let handleSubmit = (e) => {
+        setLoading(true)
         e.preventDefault();
         router.push(`/search?q=${encodeURIComponent(searchInput)}`);
+        setTimeout(()=>{setLoading(false)},700)
     }
     return <Box bgColor={'green.900'}>
         <Container maxW={1400} >
@@ -40,7 +43,7 @@ function Navbar() {
                                 borderRightRadius={0}
                                 borderColor={'white'}
                                 placeholder="Search here" />
-                            <Button borderLeftRadius={0} type="Submit">Search</Button></Flex>
+                            <Button borderLeftRadius={0} type="Submit">{loading?'Searching':'Search'}</Button></Flex>
 
                     </form>
                 </Box>
