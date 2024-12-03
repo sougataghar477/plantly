@@ -1,41 +1,42 @@
 'use client';
 
-import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { Box, Container, Flex, Heading, Text, Spinner } from "@chakra-ui/react";
 import { getItems } from '@/GetItems';
 import GreenCard from "@/components/Card";
 
 function SearchedResults() {
+    const [items, setItems] = useState([]); // Holds fetched and filtered items
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
     const searchParams = useSearchParams();
-    const [searchedTtems, setItems] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
+    const query = searchParams.get('q')?.toLowerCase() || "";
     useEffect(() => {
         async function fetchAndFilterItems() {
             setLoading(true);
-            setError(null);
+            setError("");
 
             try {
-                const { items, error } = await getItems();
+                const { items: fetchedItems, error } = await getItems();
                 if (error) {
-                    setError(error);
+                    setError(error); // Handle the error
                 } else {
-                    const query = searchParams.get('q')?.toLowerCase() || '';
-                  
-                    setItems(items.filter(item => item.name.toLowerCase().includes(query.toLowerCase())));
-                 
+                     // Get query parameter
+                    const filteredItems = fetchedItems.filter(item =>
+                        item.name.toLowerCase().includes(query)
+                    );
+                    setItems(filteredItems); // Save filtered items
                 }
             } catch (err) {
-                setError("An error occurred while fetching items.");
+                setError("Failed to fetch items.");
             } finally {
                 setLoading(false);
             }
         }
 
         fetchAndFilterItems();
-    }, [searchParams]); // React to searchParams changes
+    }, [query]); // Re-run effect when searchParams change
 
     return (
         <Container py={16} px={[4, 16, 16]} maxW={1260}>
@@ -43,15 +44,15 @@ function SearchedResults() {
                 <Heading mb={8} fontSize={'4xl'}>Searched Items</Heading>
                 <Flex mx={'auto'} justifyContent={'center'} gap={'20px'} wrap={'wrap'}>
                     {loading ? (
-                        <Spinner size="lg" color="blue.500" />
+                        <Spinner size="lg" />
                     ) : error ? (
                         <Text color="red.500" textAlign="center">
                             {error}
                         </Text>
-                    ) : searchedTtems.length > 0 ? (
-                        searchedTtems.map((item, index) => (
+                    ) : items.length > 0 ? (
+                        items.map((item, index) => (
                             <GreenCard
-                                key={item.id || index} // Prefer unique id if available
+                                key={index}
                                 name={item.name}
                                 description={item.description}
                                 price={item.price}
