@@ -6,7 +6,7 @@ import GreenCard from "@/components/Card";
 async function SearchedResults({searchParams}) {
     const {items,error} =await getItems();
   // Normalize the query for case-insensitive matching
-    let query= searchParams.q;
+    let query= await searchParams?.q;
     let searchedItems=items.filter(item => item.name.toLowerCase().includes(query.toLowerCase()));
     return (
   
