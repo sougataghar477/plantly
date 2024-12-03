@@ -5,7 +5,7 @@ export async function getItems(category) {
  
 
     try {
-        const response = await fetch(`http://localhost:3000/api/get_items`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/get_items`);
         if (!response.ok) {
             throw new Error(`Failed to fetch data: ${response.status}`);
         }
